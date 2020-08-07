@@ -12,6 +12,7 @@
         <module>advancedMail</module>
         <module>i18n</module>
         <module>mail</module>
+        <module>condition</module>
     </modules>
 
 

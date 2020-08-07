@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hpw.dao.mapper.GameListMapper">
+  <resultMap id="BaseResultMap" type="com.hpw.bean.GameList">
+
+    <!--======= id, 可以看成游戏入口id =========-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+
+    <!--======= icon 类型 (0容器 1游戏) =========-->
+    <result column="game_id" jdbcType="INTEGER" property="gameId" typeHandler="com.hpw.dao.enummapping.CodeTypeEnumHandler"/>
+
+    <!--======= 容器id, 表明所处的容器位置，0表示处于大厅中 =========-->
+    <result column="container_id" jdbcType="INTEGER" property="containerId" />
+
+    <!--======= 解锁条件, 采用 conditionId,conditionTargetValue 形式, 分号表示且, 管道符表示或; 比如 1,2000;2,19|3,299 表示要满足1条件达到2000且2条件达到19或者3条件达到299 =========-->
+    <result column="unlock_condition" jdbcType="VARCHAR" property="unlockCondition" />
+
+    <!--======= icon 尺寸，(0小 1中 2大) =========-->
+    <result column="size_type" jdbcType="INTEGER" property="sizeType" typeHandler="com.hpw.dao.enummapping.CodeTypeEnumHandler"/>
+
+    <!--======= icon位置 =========-->
+    <result column="index" jdbcType="INTEGER" property="index" />
+
+    <!--======= 玩法，key, value 形式，比如 1,200 可以表示jackpot达到库存200，需要内部计算 =========-->
+    <result column="play" jdbcType="VARCHAR" property="play" />
+
+    <!--======= 标签类型(0上新，1热门，2vip) =========-->
+    <result column="tag_type" jdbcType="INTEGER" property="tagType" typeHandler="com.hpw.dao.enummapping.CodeTypeEnumHandler"/>
+
+    <!--======= 当前入口状态 0下架 1敬请期待 2激活 =========-->
+    <result column="state" jdbcType="INTEGER" property="state" typeHandler="com.hpw.dao.enummapping.CodeTypeEnumHandler"/>
+
+    <!--======= 额外解锁条件，当用户完成时，可忽视 unlock_condition =========-->
+    <result column="extra_unlock_condition" jdbcType="VARCHAR" property="extraUnlockCondition" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    tableName: g_game_list
+    -->
+    `id`,`game_id`,`container_id`,`unlock_condition`,`size_type`,`index`,`play`,`tag_type`,
+    `state`,`extra_unlock_condition`
+  </sql>
+
+
+  <!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: 2020-08-06 20:40:06 ### -->
+
+  <!-- Your codes goes here!!! -->
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM g_game_list
+  </select>
+
+  <insert id="addGameList" keyProperty="gameList.id" useGeneratedKeys="true">
+    INSERT INTO g_game_list
+    (
+      `game_id`,`container_id`,
+        <if test="gameList.unlockCondition">
+          `unlock_condition`,
+        </if>
+      `size_type`,`index`,
+        <if test="gameList.play">
+          `play`,
+        </if>
+      <if test="gameList.extraUnlockCondition">
+        `extra_unlock_condition`
+      </if>
+      `tag_type`, `state`
+    )
+    VALUES
+    (
+      #{gameList.gameId, typeHandler=com.hpw.dao.enummapping.CodeTypeEnumHandler}, #{gameList.containerId},
+      <if test="gameList.unlockCondition">
+        #{gameList.unlockCondition},
+      </if>
+      #{gameList.sizeType, typeHandler=com.hpw.dao.enummapping.CodeTypeEnumHandler}, #{gameList.index},
+      <if test="gameList.play">
+          #{gameList.play},
+      </if>
+      <if test="gameList.extraUnlockCondition">
+        #{gameList.extraUnlockCondition}
+      </if>
+      #{gameList.tagType, typeHandler=com.hpw.dao.enummapping.CodeTypeEnumHandler}, #{gameList.state, typeHandler=com.hpw.dao.enummapping.CodeTypeEnumHandler}
+    )
+
+  </insert>
+</mapper>
