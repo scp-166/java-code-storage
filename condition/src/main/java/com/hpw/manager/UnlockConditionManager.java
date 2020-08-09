@@ -96,6 +96,7 @@ public class UnlockConditionManager {
 		UnlockCondition tempCondition;
 
 		for (List<String> sourceAndGroups : stringConditionGroups) {
+			andGroups = new ArrayList<>(sourceAndGroups.size());
 			for (String conditionItem : sourceAndGroups) {
 				String[] conditionArr = StringUtils.split(conditionItem, ",");
 				if (Objects.isNull(conditionArr)) {
@@ -105,7 +106,6 @@ public class UnlockConditionManager {
 				andGroups.add(tempCondition);
 			}
 			orGroups.add(andGroups);
-			andGroups = new ArrayList<>(3);
 		}
 		return orGroups;
 	}
@@ -124,10 +124,11 @@ public class UnlockConditionManager {
 		List<List<String>> stringConditionGroups = parse2StringConditionGroup(extraUnlockCostStr);
 
 		List<List<ExtractUnlockCost>> orGroups = new ArrayList<>(stringConditionGroups.size());
-		List<ExtractUnlockCost> andGroups = new ArrayList<>(3);
+		List<ExtractUnlockCost> andGroups;
 		ExtractUnlockCost tempCost;
 
 		for (List<String> sourceAndGroups : stringConditionGroups) {
+			andGroups = new ArrayList<>(sourceAndGroups.size());
 			for (String conditionItem : sourceAndGroups) {
 				String[] conditionArr = StringUtils.split(conditionItem, ",");
 				if (Objects.isNull(conditionArr)) {
@@ -138,7 +139,7 @@ public class UnlockConditionManager {
 				andGroups.add(tempCost);
 			}
 			orGroups.add(andGroups);
-			andGroups = new ArrayList<>(3);
+
 		}
 		return orGroups;
 	}
@@ -207,8 +208,8 @@ public class UnlockConditionManager {
 	public static void main(String[] args) {
         // String conditionStr = "1,5;2,5000|1,90";  // 2
         // String conditionStr = "1,5;2,5000";  // 2
-        // String conditionStr = "1,50;2,500";  // 1
-		String conditionStr = "1,5|2,5000";  // 0
+        String conditionStr = "1,50;2,500";  // 1
+		// String conditionStr = "1,5|2,5000";  // 0
 		List<List<UnlockCondition>> lists = UnlockConditionManager.getInstance().parse2ConditionGroup(conditionStr);
 		System.out.println(lists);
 		System.out.println(UnlockConditionManager.getInstance().checkUnlockConditionComplete(910002L, 20, lists));
