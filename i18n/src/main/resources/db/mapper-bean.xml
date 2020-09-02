@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+						http://www.springframework.org/schema/context   
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- 导入配置 -->
+	<context:property-placeholder location="classpath:config/db.properties"/>
+	
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter">
+	    <property name="dataSourceLogEnabled" value="false" />
+	    <property name="connectionLogEnabled" value="false" />
+	    <property name="statementLogEnabled" value="false" />
+	    <property name="resultSetLogEnabled" value="false" />
+	</bean>
+
+	<!-- 游戏数据源 -->
+	<bean id="hallDataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+		<property name="url" value="${jdbc.com.url}"/>
+		<property name="username" value="${jdbc.com.username}"/>
+		<property name="password" value="${jdbc.com.password}"/>
+
+		<!-- 初始化连接大小 --> 
+		<property name="initialSize" value="5"/>
+		<!-- 连接池最大数量 -->  
+		<property name="maxActive" value="50"/>
+		<!-- 获取连接最大等待时间 -->  
+		<property name="maxWait" value="60000"/>
+        <!-- 连接池最小空闲 -->  
+        <property name="minIdle" value="1"/>
+        <!-- 配置filters用于输出JDBC执行的日志 -->  
+		<property name="filters" value="log4j2" />
+		<!-- 配置输出日志 -->
+		<property name="proxyFilters">
+	        <list>
+	            <ref bean="log-filter"/>
+	        </list>
+	    </property>
+
+		<property name="timeBetweenEvictionRunsMillis" value="10000"/>
+		<property name="minEvictableIdleTimeMillis" value="300000"/>
+
+		<property name="validationQuery" value="SELECT 'x'"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="testOnBorrow" value="false"/>
+		<property name="testOnReturn" value="false"/>
+
+		<property name="poolPreparedStatements" value="false"/>
+	</bean>
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="gameSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hallDataSource"/>
+<!--		<property name="configLocation" value="classpath:db/mybatis-config.xml"/>-->
+		<!-- 自动扫描mapping.xml文件 -->  
+		<property name="mapperLocations" value="classpath:db/mapper/*Mapper.xml"/>
+		<property name="typeAliasesPackage" value="com.hpw.bean"/>
+	</bean>
+
+	<!-- Mapper接口所在包名，Spring会自动查找其下的类 -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.hpw.dao.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="gameSqlSessionFactory"/>
+    </bean>
+	
+</beans>

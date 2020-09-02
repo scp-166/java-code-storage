@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hpw.dao.mapper.BroadcastMailRecordPOMapper">
+  <resultMap id="BaseResultMap" type="com.hpw.bean.BroadcastMailRecordPO">
+
+    <!--======= 接收方id =========-->
+    <id column="receiver_id" jdbcType="BIGINT" property="receiverId" />
+
+    <!--======= 全局邮件id，同 c_global_mail_record =========-->
+    <id column="broadcast_mail_id" jdbcType="BIGINT" property="broadcastMailId" />
+
+    <!--======= 是否已读 =========-->
+    <result column="read" jdbcType="BIT" property="read" />
+
+    <!--======= 附件状态 =========-->
+    <result column="attachment_state" jdbcType="INTEGER" property="attachmentState" />
+
+    <!--======= 是否删除 =========-->
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    tableName: c_broadcast_mail_record
+    -->
+    `receiver_id`,`broadcast_mail_id`,`read`,`attachment_state`,`deleted`
+  </sql>
+
+  <!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: 2020-07-27 20:18:56 ### -->
+
+  <!-- Your codes goes here!!! -->
+  <insert id="addRecord">
+    INSERT INTO c_broadcast_mail_record
+    ( `receiver_id`,`broadcast_mail_id`,`read`,`attachment_state`, `deleted` )
+    VALUES
+    (#{record.receiverId}, #{record.broadcastMailId}, #{record.read}, #{record.attachmentState}, #{record.deleted})
+  </insert>
+
+  <select id="getRecordByReceiverId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM c_broadcast_mail_record
+    WHERE receiver_id = #{receiverId}
+  </select>
+
+  <update id="updateRecordList">
+    <foreach collection="poList" separator=";" item="item">
+      UPDATE c_broadcast_mail_record
+      <set>
+        <if test="item.read != null">
+          `read` = #{item.read},
+        </if>
+        <if test="item.attachmentState">
+          `attachment_state` = #{item.attachmentState},
+        </if>
+      </set>
+      WHERE `receiver_id` = #{item.receiverId} and `broadcast_mail_id` = #{item.broadcastMailId}
+    </foreach>
+  </update>
+
+  <update id="logicDeleteByIdList">
+    UPDATE c_broadcast_mail_record
+    SET deleted = 1
+    WHERE(receiver_id, broadcast_mail_id) in (
+    <foreach collection="poList" item="item" separator=",">
+      (#{item.receiverId}, #{item.broadcastMailId})
+    </foreach>
+    )
+  </update>
+  
+</mapper>
