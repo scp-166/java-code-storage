@@ -13,6 +13,7 @@
         <module>i18n</module>
         <module>mail</module>
         <module>condition</module>
+        <module>FileMethod</module>
     </modules>
 
 

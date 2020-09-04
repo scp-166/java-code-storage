@@ -1,9 +1,9 @@
 package com.hpw.bean;
 
-import com.hpw.myenum.mappingValue.EntranceStateEnum;
-import com.hpw.myenum.mappingValue.GameIdEnum;
-import com.hpw.myenum.mappingValue.SizeTypeEnum;
-import com.hpw.myenum.mappingValue.TagTypeEnum;
+import com.hpw.myenum.convert.EntranceStateEnum;
+import com.hpw.myenum.convert.GameIdEnum;
+import com.hpw.myenum.convert.SizeTypeEnum;
+import com.hpw.myenum.convert.TagTypeEnum;
 import com.hpw.utils.validatorgroup.InsertCheckGroup;
 
 import javax.validation.constraints.NotNull;

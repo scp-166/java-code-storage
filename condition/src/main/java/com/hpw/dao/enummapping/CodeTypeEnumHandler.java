@@ -1,6 +1,6 @@
 package com.hpw.dao.enummapping;
 
-import com.hpw.myenum.mappingValue.BaseCodeTypeEnum;
+import com.hpw.myenum.convert.BaseCodeTypeEnum;
 import org.apache.ibatis.type.*;
 
 import java.sql.CallableStatement;

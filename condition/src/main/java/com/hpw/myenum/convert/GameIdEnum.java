@@ -1,4 +1,4 @@
-package com.hpw.myenum.mappingValue;
+package com.hpw.myenum.convert;
 
 /**
  * 游戏类型枚举

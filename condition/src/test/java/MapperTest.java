@@ -3,10 +3,10 @@ import com.hpw.bean.GameList;
 import com.hpw.bean.UserEntranceUnlockCost;
 import com.hpw.dao.impl.GameListDao;
 import com.hpw.dao.impl.UserEntranceUnlockCostDao;
-import com.hpw.myenum.mappingValue.EntranceStateEnum;
-import com.hpw.myenum.mappingValue.GameIdEnum;
-import com.hpw.myenum.mappingValue.SizeTypeEnum;
-import com.hpw.myenum.mappingValue.TagTypeEnum;
+import com.hpw.myenum.convert.EntranceStateEnum;
+import com.hpw.myenum.convert.GameIdEnum;
+import com.hpw.myenum.convert.SizeTypeEnum;
+import com.hpw.myenum.convert.TagTypeEnum;
 
 public class MapperTest {
     public static void main(String[] args) throws Throwable {
@@ -17,7 +17,7 @@ public class MapperTest {
         // getUserEntranceUnlockCost();
 
         getGameList();
-        insertGameList();
+        // insertGameList();
         getGameList();
 
 

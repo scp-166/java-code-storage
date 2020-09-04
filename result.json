@@ -1,13 +1,13 @@
 [
     {
         "jmhVersion" : "1.23",
-        "benchmark" : "com.hpw.test.JHMjava8Test.testMySelf",
+        "benchmark" : "com.hpw.test.JHMParseStringTest.testGuava",
         "mode" : "ss",
         "threads" : 4,
         "forks" : 2,
         "jvm" : "D:\\common\\develop\\jdk\\jdk8\\jre\\bin\\java.exe",
         "jvmArgs" : [
-            "-javaagent:D:\\common\\develop\\ideac\\lib\\idea_rt.jar=55148:D:\\common\\develop\\ideac\\bin",
+            "-javaagent:D:\\common\\develop\\ideac\\lib\\idea_rt.jar=58524:D:\\common\\develop\\ideac\\bin",
             "-Dfile.encoding=UTF-8"
         ],
         "jdkVersion" : "1.8.0_102",
@@ -18,41 +18,41 @@
         "warmupBatchSize" : 1,
         "measurementIterations" : 5,
         "measurementTime" : "5 s",
-        "measurementBatchSize" : 100000000,
+        "measurementBatchSize" : 1000000,
         "primaryMetric" : {
-            "score" : 19885.71322055,
-            "scoreError" : 1789.9039590617574,
+            "score" : 476.04474825,
+            "scoreError" : 234.30415174452563,
             "scoreConfidence" : [
-                18095.80926148824,
-                21675.617179611756
+                241.74059650547437,
+                710.3488999945256
             ],
             "scorePercentiles" : {
-                "0.0" : 18758.633021499998,
-                "50.0" : 19538.2865025,
-                "90.0" : 22713.8540906,
-                "95.0" : 22956.53084725,
-                "99.0" : 22956.53084725,
-                "99.9" : 22956.53084725,
-                "99.99" : 22956.53084725,
-                "99.999" : 22956.53084725,
-                "99.9999" : 22956.53084725,
-                "100.0" : 22956.53084725
+                "0.0" : 377.88152275,
+                "50.0" : 390.71684000000005,
+                "90.0" : 817.7078707250001,
+                "95.0" : 838.7817435000001,
+                "99.0" : 838.7817435000001,
+                "99.9" : 838.7817435000001,
+                "99.99" : 838.7817435000001,
+                "99.999" : 838.7817435000001,
+                "99.9999" : 838.7817435000001,
+                "100.0" : 838.7817435000001
             },
             "scoreUnit" : "ms/op",
             "rawData" : [
                 [
-                    19575.2098205,
-                    19501.8176295,
-                    19492.749028500002,
-                    20529.76328075,
-                    19574.7553755
+                    838.7817435000001,
+                    628.04301575,
+                    396.1944795,
+                    377.88152275,
+                    381.43233675
                 ],
                 [
-                    20085.0569845,
-                    19172.20432525,
-                    18758.633021499998,
-                    22956.53084725,
-                    19210.41189225
+                    564.874932,
+                    423.80431625,
+                    382.2662905,
+                    381.92964499999994,
+                    385.23920050000004
                 ]
             ]
         },
@@ -61,13 +61,13 @@
     },
     {
         "jmhVersion" : "1.23",
-        "benchmark" : "com.hpw.test.JHMjava8Test.testStringTokenizer",
+        "benchmark" : "com.hpw.test.JHMParseStringTest.testMySelf",
         "mode" : "ss",
         "threads" : 4,
         "forks" : 2,
         "jvm" : "D:\\common\\develop\\jdk\\jdk8\\jre\\bin\\java.exe",
         "jvmArgs" : [
-            "-javaagent:D:\\common\\develop\\ideac\\lib\\idea_rt.jar=55148:D:\\common\\develop\\ideac\\bin",
+            "-javaagent:D:\\common\\develop\\ideac\\lib\\idea_rt.jar=58524:D:\\common\\develop\\ideac\\bin",
             "-Dfile.encoding=UTF-8"
         ],
         "jdkVersion" : "1.8.0_102",
@@ -78,41 +78,101 @@
         "warmupBatchSize" : 1,
         "measurementIterations" : 5,
         "measurementTime" : "5 s",
-        "measurementBatchSize" : 100000000,
+        "measurementBatchSize" : 1000000,
         "primaryMetric" : {
-            "score" : 22083.8107772,
-            "scoreError" : 1126.5845808698386,
+            "score" : 229.645549475,
+            "scoreError" : 52.70866876512375,
             "scoreConfidence" : [
-                20957.22619633016,
-                23210.39535806984
+                176.93688070987625,
+                282.3542182401237
             ],
             "scorePercentiles" : {
-                "0.0" : 21129.9256945,
-                "50.0" : 22018.655111125,
-                "90.0" : 23367.811633449997,
-                "95.0" : 23431.658019249997,
-                "99.0" : 23431.658019249997,
-                "99.9" : 23431.658019249997,
-                "99.99" : 23431.658019249997,
-                "99.999" : 23431.658019249997,
-                "99.9999" : 23431.658019249997,
-                "100.0" : 23431.658019249997
+                "0.0" : 188.90227425,
+                "50.0" : 217.8915955,
+                "90.0" : 291.188008225,
+                "95.0" : 291.97103925,
+                "99.0" : 291.97103925,
+                "99.9" : 291.97103925,
+                "99.99" : 291.97103925,
+                "99.999" : 291.97103925,
+                "99.9999" : 291.97103925,
+                "100.0" : 291.97103925
             },
             "scoreUnit" : "ms/op",
             "rawData" : [
                 [
-                    21134.974472,
-                    22793.19416125,
-                    22366.20193875,
-                    22068.3623555,
-                    22661.091175499998
+                    284.14072899999996,
+                    247.56258400000002,
+                    216.140601,
+                    219.64258999999998,
+                    199.04646525
                 ],
                 [
-                    21800.470413,
-                    21483.2816755,
-                    21129.9256945,
-                    21968.94786675,
-                    23431.658019249997
+                    291.97103925,
+                    231.22271199999997,
+                    205.51698675,
+                    212.30951325,
+                    188.90227425
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.23",
+        "benchmark" : "com.hpw.test.JHMParseStringTest.testStringTokenizer",
+        "mode" : "ss",
+        "threads" : 4,
+        "forks" : 2,
+        "jvm" : "D:\\common\\develop\\jdk\\jdk8\\jre\\bin\\java.exe",
+        "jvmArgs" : [
+            "-javaagent:D:\\common\\develop\\ideac\\lib\\idea_rt.jar=58524:D:\\common\\develop\\ideac\\bin",
+            "-Dfile.encoding=UTF-8"
+        ],
+        "jdkVersion" : "1.8.0_102",
+        "vmName" : "Java HotSpot(TM) 64-Bit Server VM",
+        "vmVersion" : "25.102-b14",
+        "warmupIterations" : 5,
+        "warmupTime" : "5 s",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 5,
+        "measurementTime" : "5 s",
+        "measurementBatchSize" : 1000000,
+        "primaryMetric" : {
+            "score" : 294.65821847499996,
+            "scoreError" : 203.7950781082254,
+            "scoreConfidence" : [
+                90.86314036677456,
+                498.4532965832253
+            ],
+            "scorePercentiles" : {
+                "0.0" : 202.622409,
+                "50.0" : 244.70521000000002,
+                "90.0" : 564.5801761499999,
+                "95.0" : 569.076699,
+                "99.0" : 569.076699,
+                "99.9" : 569.076699,
+                "99.99" : 569.076699,
+                "99.999" : 569.076699,
+                "99.9999" : 569.076699,
+                "100.0" : 569.076699
+            },
+            "scoreUnit" : "ms/op",
+            "rawData" : [
+                [
+                    569.076699,
+                    265.04475625,
+                    202.622409,
+                    244.36682875,
+                    208.56830374999998
+                ],
+                [
+                    524.1114705,
+                    253.75735925,
+                    245.04359125000002,
+                    223.85175299999997,
+                    210.139014
                 ]
             ]
         },

@@ -31,14 +31,14 @@
     <result column="state" jdbcType="INTEGER" property="state" typeHandler="com.hpw.dao.enummapping.CodeTypeEnumHandler"/>
 
     <!--======= 额外解锁条件，当用户完成时，可忽视 unlock_condition =========-->
-    <result column="extra_unlock_condition" jdbcType="VARCHAR" property="extraUnlockCondition" />
+    <result column="extra_unlock_cost" jdbcType="VARCHAR" property="extraUnlockCost" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
-    tableName: g_game_list
+    tableName: g_entrance_info
     -->
     `id`,`game_id`,`container_id`,`unlock_condition`,`size_type`,`index`,`play`,`tag_type`,
-    `state`,`extra_unlock_condition`
+    `state`,`extra_unlock_cost`
   </sql>
 
 
@@ -47,11 +47,11 @@
   <!-- Your codes goes here!!! -->
   <select id="getAll" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/>
-    FROM g_game_list
+    FROM g_entrance_info
   </select>
 
   <insert id="addGameList" keyProperty="gameList.id" useGeneratedKeys="true">
-    INSERT INTO g_game_list
+    INSERT INTO g_entrance_info
     (
       `game_id`,`container_id`,
         <if test="gameList.unlockCondition">
@@ -62,7 +62,7 @@
           `play`,
         </if>
       <if test="gameList.extraUnlockCondition">
-        `extra_unlock_condition`
+        `extra_unlock_cost`
       </if>
       `tag_type`, `state`
     )

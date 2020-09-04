@@ -1,4 +1,4 @@
-package com.hpw.myenum.mappingValue;
+package com.hpw.myenum.convert;
 
 /**
  * 图标大小
