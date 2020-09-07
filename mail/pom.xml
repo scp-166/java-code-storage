@@ -26,8 +26,8 @@
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.sun.templateFormatContent/javax.templateFormatContent -->
         <dependency>
-            <groupId>com.sun.templateFormatContent</groupId>
-            <artifactId>javax.templateFormatContent</artifactId>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
     </dependencies>
