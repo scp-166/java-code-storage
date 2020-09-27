@@ -19,6 +19,7 @@
         <module>redis</module>
         <module>redisLua</module>
         <module>utils</module>
+        <module>graph</module>
     </modules>
 
 
