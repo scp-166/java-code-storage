@@ -15,6 +15,10 @@
         <module>condition</module>
         <module>FileMethod</module>
         <module>game1</module>
+        <module>sort</module>
+        <module>redis</module>
+        <module>redisLua</module>
+        <module>utils</module>
     </modules>
 
 
