@@ -20,6 +20,7 @@
         <module>redisLua</module>
         <module>utils</module>
         <module>graph</module>
+        <module>demo</module>
     </modules>
 
 
